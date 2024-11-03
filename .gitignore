@@ -1,0 +1,17 @@
+*.prg
+*.rep
+*.sym
+*.bin
+*.pyc
+*.tmp
+*.zip
+__pycache__/*
+__pycache__
+build/*
+memory.dump
+_*.h
+_*.def
+_*.decoded
+*.o
+*.obj
+bin/*
