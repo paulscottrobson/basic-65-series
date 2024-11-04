@@ -11,6 +11,8 @@ build/*
 memory.dump
 _*.h
 _*.def
+_*.asm
+_*.inc
 _*.decoded
 *.o
 *.obj

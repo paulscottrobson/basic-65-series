@@ -19,12 +19,6 @@ Using RETURN and NEXT to stack unwind, an awful programming practice which shoul
 
 Likely no inline assembler partly due to having 3 different target processors.  I found in practice I didn't use it. 
 
-### Special tokenising
-
-- internal strings (reduces fragmentation)
-- variables as references into the variable page
-- integer constants (possibly extended to decimals, but may be different)  - considering a 7 bit storage form with a prefix.
-
 ### Additional functionality
 
 Both the main target machines have their own extensions, so a system will be needed to add arbitrary commands and functions on a per system basis, which will be the same system as I'm likely to use in the rest of the interpreter, a scanning / automatic system.
