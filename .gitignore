@@ -5,6 +5,8 @@
 *.pyc
 *.tmp
 *.zip
+*.lst
+*.lbl
 __pycache__/*
 __pycache__
 build/*

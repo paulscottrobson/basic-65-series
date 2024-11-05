@@ -12,4 +12,4 @@ Files with an underscore prefix are assumed to be temporary/generated files and 
 
 In the modules subdirectory where the sources live, the module "common" contains all the setup for things like zero page usage and similar (which will be mostly 0n type files)
 
-The build sets -DCPU=processor (6502,65816,4502) for the three main processor types which can be used to set system specific code where needed that is not done via macros.
+The build sets -DCPU=processor (6502,65816,4502) for the three main processor types which can be used to set system specific code where needed that is not done via macros, and -DTARGET=target (16 for Commander X16, 65 for Mega65)
