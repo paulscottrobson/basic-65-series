@@ -9,7 +9,7 @@ SCRIPTDIR = $(ROOTDIR)scripts/
 #		Assembler directives
 #
 ACME_COMMON = acme -Wtype-mismatch -l $(BINDIR)build.lbl -r $(BINDIR)build.lst -f plain
-ACME6502 = $(ACME_COMMON) -DTARGET=16 -DCPU=6502 --cpu 65C02  -o $(OBJECT) $(SOURCES) 
+ACME6502 = $(ACME_COMMON) -DTARGET=16 -DCPU=6502 --cpu 65C02  -o $(OBJECT) __build.tmp
 #
 #		Emulators and other external tools
 #
@@ -31,4 +31,4 @@ run65: asm65
 	$(X16_6502) -prg $(OBJECT) -run
 
 builder: 
-	$(PYTHON) $(SCRIPTDIR)builder.py @$(ROOTDIR)modules $(MODULES)
+	$(PYTHON) $(SCRIPTDIR)builder.py @$(ROOTDIR)modules $(MODULES) >__build.tmp
