@@ -19,4 +19,7 @@
 	
 		* = $801
 		!byte $01,$08,$0b,$08,$01,$00,$9e,$32,$30,$36,$31,$00,$00,$00  	; SYS 2061 header.
-		}
+
+		zeroPageSpace = $22  											; X16 allows $22-$7F usage
+		dataSpace = $400 												; $400-$7FF is available for machine code usage.
+}
