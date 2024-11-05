@@ -16,6 +16,7 @@ _*.def
 _*.asm
 _*.inc
 _*.decoded
+_*.py
 *.o
 *.obj
 bin/*
