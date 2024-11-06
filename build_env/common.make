@@ -1,3 +1,14 @@
+# *******************************************************************************************
+# *******************************************************************************************
+#
+#		Name : 		common.make
+#		Purpose :	Common make
+#		Date :		5th November 2024
+#		Author : 	Paul Robson (paul@robsons.org.uk)
+#
+# *******************************************************************************************
+# *******************************************************************************************
+
 PYTHON = python3
 #
 #		Directories
@@ -8,7 +19,7 @@ SCRIPTDIR = $(ROOTDIR)scripts/
 #
 #		Assembler directives
 #
-ACME_COMMON = acme -Wtype-mismatch -l $(BINDIR)build.lbl -r $(BINDIR)build.lst -f cbm
+ACME_COMMON = acme -l $(BINDIR)build.lbl -r $(BINDIR)build.lst -f cbm
 ACME6502 = $(ACME_COMMON) -DTARGET=16 -DCPU=6502 --cpu 65C02  -o $(OBJECT) __build.tmp
 #
 #		Emulators and other external tools

@@ -18,9 +18,7 @@ Boot:
 
 		jsr 	FloatAdd
 
-		lda 	#1  		 				; does a dump-quit.		
-		sta 	$FB94
-		!byte 	$4C,$FF,$FF
+		jmp 	$FFFF
 
 
 
