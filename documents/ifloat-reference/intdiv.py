@@ -26,11 +26,11 @@ class IntegerDivideOperation(BinaryOperation):
 	def calculate(self,a,b):
 #		print("Calculating",a.get(),b.get(),"should be",self.getResult(a,b))
 		newSign = a.isNegative != b.isNegative  											# Figure out if result is +ve/-ve
-		r = self.shiftDivide(a,b) 	 														# Divide the two.
-		if r.mantissa != 0:  																# Non zero result
-			r.isNegative = newSign  														# Set up new sign.
-#		print("Result",r.get())
-		return r
+		a = self.shiftDivide(a,b) 	 														# Divide the two.
+		if a.mantissa != 0:  																# Non zero result
+			a.isNegative = newSign  														# Set up new sign.
+#		print("Result",a.get())
+		return a
 	#
 	#		Integer division
 	#

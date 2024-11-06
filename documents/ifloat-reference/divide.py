@@ -29,27 +29,27 @@ class DivideOperation(BinaryOperation):
 		b.normalise()
 		newSign = a.isNegative != b.isNegative  											# Figure out if result is +ve/-ve
 		newExponent = a.exponent - b.exponent - 30  										# New exponent.
-		r = self.shiftDivide(a,b) 	 														# Divide the two.
-		if r.mantissa != 0:  																# Non zero result
-			r.isNegative = newSign  														# Set up new sign.
-			r.exponent = newExponent
-#		print("Result",r.get())
-		return r
+		a = self.shiftDivide(a,b) 	 														# Divide the two.
+		if a.mantissa != 0:  																# Non zero result
+			a.isNegative = newSign  														# Set up new sign.
+			a.exponent = newExponent
+#		print("Result",a.get())
+		return a
 	#
 	#		Integer division with shift
 	#
-	def shiftDivide(self,a,b):
-		r = IFloat(0) 																		# Result.
+	def shiftDivide(self,r,b):
+		a = IFloat(0) 																		# Result.
 		for i in range(0,31):																# Do 31 times
-			carry = self.divideCheckSubtract(a,b) 											# This is used in integer division also
+			carry = self.divideCheckSubtract(r,b) 											# This is used in integer division also
 			# this code is just a 64 bit shift of A:R left
-			r.mantissa = (r.mantissa << 1) | (1 if carry else 0) 							# Rotate into result.
-			a.mantissa = (a.mantissa << 1) & 0xFFFFFFFF  									# A mantissa left to.
-			if (r.mantissa & 0x100000000) != 0:	 											# carry to move.
-				r.mantissa = r.mantissa & 0xFFFFFFFF
-				a.mantissa = a.mantissa | 1
+			a.mantissa = (a.mantissa << 1) | (1 if carry else 0) 							# Rotate into result.
+			r.mantissa = (r.mantissa << 1) & 0xFFFFFFFF  									# A mantissa left to.
+			if (a.mantissa & 0x100000000) != 0:	 											# carry to move.
+				a.mantissa = a.mantissa & 0xFFFFFFFF
+				r.mantissa = r.mantissa | 1
 
-		return r
+		return a
 	#
 	#		Do subtraction, return true if okay.
 	#
