@@ -13,7 +13,7 @@ ACME6502 = $(ACME_COMMON) -DTARGET=16 -DCPU=6502 --cpu 65C02  -o $(OBJECT) __bui
 #
 #		Emulators and other external tools
 #
-X16EMU = /aux/builds/x16-emulator/x16emu -debug -scale 2 
+X16EMU = /aux/builds/x16-emulator/x16emu -debug -scale 2 -dump R 
 #
 #		Uncommenting .SILENT will shut the whole build up.
 #
@@ -28,6 +28,7 @@ asm8: prelim builder
 	$(ACME6502)
 
 run8: asm8
+	rm -f dump*.bin
 	$(X16EMU) -c02 -prg $(OBJECT) -run
 
 builder:

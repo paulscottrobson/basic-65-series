@@ -17,7 +17,12 @@ Boot:
 		bpl 	-
 
 		jsr 	FloatAdd
-Halt:		
-		jmp 	Halt
+
+		lda 	#1  		 				; does a dump-quit.		
+		sta 	$FB94
+		!byte 	$4C,$FF,$FF
+
+
+
 
 		
