@@ -31,6 +31,15 @@ FloatAdd:
 		ora 	bExponent
 		beq 	_FAInteger 					; if so, don't need to normalise
 		;
+		;		Check zero.
+		;
+		+Test32B 							; check if B = 0
+		beq 	_FAExit 					; if so, just return A.
+		+Test32A 							; check if A = 0
+		bne 	_FAFloatingPoint 			; if not, then do FP addition.
+		+Copy32BA 							; copy B to A
+		bra 	_FAExit 					; and exit
+		;
 		;		Floating point add/subtract
 		;
 _FAFloatingPoint:

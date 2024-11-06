@@ -10,6 +10,31 @@
 ; *******************************************************************************************
 
 !if CPU=6502 {
+
+!macro copyreg .target,.source {
+	lda 	.source+0
+	sta 	.target+0
+	lda 	.source+1
+	sta 	.target+1
+	lda 	.source+2
+	sta 	.target+2
+	lda 	.source+3
+	sta 	.target+3
+	lda 	.source+4
+	sta 	.target+4
+	lda 	.source+5
+	sta 	.target+5
+}
+
+; -------------------------------------------------------------------------------------------
+;
+;							Copy B to A as 32 bit integer
+;
+; -------------------------------------------------------------------------------------------
+Copy32BA6502:
+	+copyreg aFlags,bFlags
+	rts
+
 ; -------------------------------------------------------------------------------------------
 ;
 ;						Add B to A as 32 bit integer, sets N and C 
