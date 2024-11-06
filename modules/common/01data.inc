@@ -13,11 +13,13 @@
 
 ; *******************************************************************************************
 ;
-;			  This flag when non-zero puts the math register into zero page
+;				Allocate a block of memory without actually initialising it.
 ;
 ; *******************************************************************************************
 
-mathInZeroPage = 1
+!macro alloc .size {
+	* = * + .size
+}
 
 ; *******************************************************************************************
 ;
@@ -28,18 +30,18 @@ mathInZeroPage = 1
 		!macro 	MathRegisterSet {
 
 aFlags:
-		!skip 	1
+		+alloc 	1
 aExponent:		
-		!skip 	1
+		+alloc 	1
 aMantissa:
-		!skip 	4
+		+alloc 	4
 
 bFlags:
-		!skip 	1
+		+alloc 	1
 bExponent:		
-		!skip 	1
+		+alloc 	1
 bMantissa:
-		!skip 	4
+		+alloc 	4
 }
 
 ; *******************************************************************************************
@@ -55,25 +57,25 @@ bMantissa:
 		}
 
 codePtr:
-		!skip	2
+		+alloc	2
 
 dataPtr:
-		!skip	2
+		+alloc	2
 
 stringAddr:
-		!skip	2
+		+alloc	2
 
 basicStackPtr:
-		!skip	2
+		+alloc	2
 
 zTemp0:			
-		!skip	2
+		+alloc	2
 
 zTemp1:			
-		!skip	2
+		+alloc	2
 
 zTemp2:			
-		!skip	2
+		+alloc	2
 
 
 ; *******************************************************************************************
@@ -89,9 +91,11 @@ zTemp2:
 		}
 
 rFlags:
-		!skip 	1
+		+alloc 	1
 rExponent:		
-		!skip 	1
+		+alloc 	1
 rMantissa:
-		!skip 	4
+		+alloc 	4
+
 		* = codeAddress
+

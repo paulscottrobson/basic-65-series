@@ -14,7 +14,7 @@ include ../../../build_env/common.make
 OBJECT = $(BINDIR)test.prg
 MODULES = common ifloat testing:float.develop
 
-all: asm65
+all: asm8
 
 prelim:
 	cp $(ROOTDIR)documents/ifloat-reference/ifloat.py $(SCRIPTDIR)/__ifloat_copy.py
