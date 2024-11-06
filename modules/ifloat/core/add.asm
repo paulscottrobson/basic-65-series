@@ -46,15 +46,23 @@ FloatAdd:
 		;		Integer arithmetic : Subtraction
 		;	
 _FASubtraction:
-		!byte 	$DB
-
-
-
+		+Sub32AB 							; subtract B from A
+		bpl 	_FAExit 					; no underflow, then exit.
+		+Neg32A 							; negate A mantissa 
+		lda 	aFlags 						; toggle the sign flag
+		eor 	#$80
+		sta 	aFlags
+		;
+		;		Exit, with check for minus zero.
+		;
+_FAExit:
+		; TODO: Check for minus zero.
+		rts		
+		;
+		;		Floating point add/subtract
+		;
 _FAFloatingPoint:
 		!byte 	$DB
 
 		
 
-_FAExit:
-		; TODO: Check for minus zero.
-		rts		
