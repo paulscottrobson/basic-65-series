@@ -43,8 +43,8 @@ FloatAdd:
 		;		Floating point add/subtract
 		;
 _FAFloatingPoint:
-		jsr 	NormaliseA 					; normalise A & B 					
-		jsr 	NormaliseB 					
+		jsr 	FloatNormaliseA 			; normalise A & B 					
+		jsr 	FloatNormaliseB 					
 		;
 		;		Work out the common exponent for the arithmetic.
 		;
@@ -112,11 +112,13 @@ _FAExit:
 
 ; *******************************************************************************************
 ;
-;									Normalise A & B
+;				Test for minus zero as we have a sign and magniturde system
 ;
 ; *******************************************************************************************
 
 FloatCheckMinusZero:
+		lda 	aFlags 						; slight increase as mostly +ve
+		bpl 	_FCMZExit
 		+Test32A 							; if a zero mantissa
 		bne 	_FCMZExit
 		lda 	aFlags 						; clear the sign bit
@@ -134,7 +136,7 @@ _FCMZExit:
 ;
 ; *******************************************************************************************
 
-NormaliseA:
+FloatNormaliseA:
 		+Test32A 							; check A zero
 		beq 	_NAExit		
 -:
@@ -147,7 +149,7 @@ NormaliseA:
 _NAExit:
 		rts				
 		
-NormaliseB:
+FloatNormaliseB:
 		+Test32B 							; check A zero
 		beq 	_NBExit
 -:
