@@ -35,7 +35,6 @@ class IntegerDivideOperation(BinaryOperation):
 	#		Integer division
 	#
 	def shiftDivide(self,r,b):
-		# r = S[x+2] b = S[x+1] a = S[x]
 		a = IFloat(0)
 		for i in range(0,32):																# Do 31 times
 			# this code is just a 64 bit shift of A:R left

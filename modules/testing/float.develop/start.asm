@@ -17,8 +17,9 @@ Boot:
 		bpl 	-
 
 		;jsr 	FloatAdd
-		jsr 	FloatMultiply
-
+		;jsr 	FloatMultiply
+		jsr 	FloatIntDivide
+		
 		jmp 	$FFFF
 
 

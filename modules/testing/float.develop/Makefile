@@ -18,7 +18,7 @@ all: asm8
 
 prelim:
 	cp $(ROOTDIR)documents/ifloat-reference/ifloat.py $(SCRIPTDIR)/__ifloat_copy.py
-	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py test_float 11 -12 >_testdata.asm
+	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py test_float 71324608 41293 >_testdata.asm
 
 show:
 	$(PYTHON) $(SCRIPTDIR)show_ifloat.py dump.bin 22
