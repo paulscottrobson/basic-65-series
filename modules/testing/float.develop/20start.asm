@@ -20,7 +20,8 @@ Boot:
 		sta 	aFlags,x
 		dex
 		bpl 	-
-		stz 	exprStackPtr
+
+		stz 	exprStackPtr 				; clear out expression stack.
 		
 		;jsr 	FloatAdd
 		;jsr 	FloatSubtract
@@ -28,15 +29,16 @@ Boot:
 		;jsr 	FloatIntDivide
 		;jsr 	FloatDivide
 		;jsr 	FloatInteger
-		;jsr 	FloatFractional
-		
-		jsr 	FloatStringToInteger
+		;jsr 	FloatFractional		
+		;jsr 	FloatStringToInteger
+		;lda 	#2
+		;jsr 	FloatScale10
+		jsr 	FloatStringToFloat
 
 		jmp 	$FFFF
 
-
 testString:
-		!text 	"32766X"
+		!text 	"-327.67X"
 
 
 

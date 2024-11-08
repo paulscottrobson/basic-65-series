@@ -15,13 +15,11 @@ include $(BUILDDIR)build.make
 OBJECT = $(BINDIR)test.prg
 MODULES = common ifloat testing:float.develop
 
-DECIMALS = 1 0.1 0.01 0.001 0.0001 0.00001 0.000001 0.0000001 0.00000001 \
-		   0.000000001 0.0000000001 0.00000000001 0.000000000001 0.0000000000001 
 all: asm8
 
 prelim:
 	cp $(ROOTDIR)documents/ifloat-reference/ifloat.py $(SCRIPTDIR)/__ifloat_copy.py
-	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py test_float 999 >_testdata.asm
+	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py test_float 12345 >_testdata.asm
 
 show:
 	$(PYTHON) $(SCRIPTDIR)show_ifloat.py dump.bin 22

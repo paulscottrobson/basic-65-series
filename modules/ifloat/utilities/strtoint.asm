@@ -23,7 +23,6 @@ FloatStringToInteger:
 
 		+Clear32A 							; set the A register to zero.
 		ldy 	#0 							; start from here.
-		+Set32A
 _FSILoop:	
 		lda 	(zTemp0),y 					; get next character
 		cmp 	#'0'						; check validity
