@@ -18,7 +18,8 @@ Boot:
 
 		;jsr 	FloatAdd
 		;jsr 	FloatMultiply
-		jsr 	FloatIntDivide
+		;jsr 	FloatIntDivide
+		jsr 	FloatDivide
 		
 		jmp 	$FFFF
 

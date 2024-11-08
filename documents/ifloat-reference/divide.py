@@ -38,18 +38,18 @@ class DivideOperation(BinaryOperation):
 	#
 	#		Integer division with shift
 	#
-	def shiftDivide(self,r,b):
-		a = IFloat(0) 																		# Result.
+	def shiftDivide(self,a,b):
+		r = IFloat(0) 																		# Result.
 		for i in range(0,31):																# Do 31 times
-			carry = self.divideCheckSubtract(r,b) 											# This is used in integer division also
-			# this code is just a 64 bit shift of A:R left
-			a.mantissa = (a.mantissa << 1) | (1 if carry else 0) 							# Rotate into result.
-			r.mantissa = (r.mantissa << 1) & 0xFFFFFFFF  									# A mantissa left to.
-			if (a.mantissa & 0x100000000) != 0:	 											# carry to move.
-				a.mantissa = a.mantissa & 0xFFFFFFFF
-				r.mantissa = r.mantissa | 1
+			carry = self.divideCheckSubtract(a,b) 											# This is used in integer division also
+			# this code is just a 64 bit shift of R:A left
+			r.mantissa = (r.mantissa << 1) | (1 if carry else 0) 							# Rotate into result.
+			a.mantissa = (a.mantissa << 1) & 0xFFFFFFFF  									# A mantissa left to.
+			if (r.mantissa & 0x100000000) != 0:	 											# carry to move.
+				r.mantissa = r.mantissa & 0xFFFFFFFF
+				a.mantissa = a.mantissa | 1
 
-		return a
+		return r
 	#
 	#		Do subtraction, return true if okay.
 	#
@@ -81,5 +81,6 @@ class DivideOperation(BinaryOperation):
 if __name__ == "__main__":
 	random.seed(42)
 	to = DivideOperation()	
+	print(to.calculate(IFloat(22),IFloat(7)).toString())
 	for i in range(0,1000*1000):
 		to.test(False,False)
