@@ -16,6 +16,9 @@
 ; *******************************************************************************************
 
 FloatMultiply:
+		pha 								; save registers
+		phx
+		phy
 		;
 		;		Check zero. Ax0 or 0xB => 0 always.
 		;
@@ -25,6 +28,9 @@ FloatMultiply:
 		bne 	_FMMultiply 				; if not, do multiply code
 		+Clear32A 							; otherwise return zero
 _FMExit1:
+		ply 								; restore registers
+		plx
+		pla
 		rts		
 		;
 		;		Floating point multiply, also works as an integer operation, but if integer overflows
@@ -87,4 +93,7 @@ _FMExit2:
 		adc 	aExponent
 		sta 	aExponent
 		jsr 	FloatCheckMinusZero 		; -0 check required here.
+		ply 								; restore registers
+		plx
+		pla
 		rts

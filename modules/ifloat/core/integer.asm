@@ -16,6 +16,10 @@
 ; *******************************************************************************************
 
 FloatInteger:
+		pha 								; save registers
+		phx
+		phy
+
 		lda 	aExponent 					; exponent >= 0, then already integer
 		bpl 	_FIExit
 		+Test32A 							; zero, then integer
@@ -29,5 +33,8 @@ _FIConvert:
 		bra 	_FIConvert
 _FIExit:
 		jsr 	FloatCheckMinusZero 		; -0 check required here.
+		ply 								; restore registers
+		plx
+		pla
 		rts				
 

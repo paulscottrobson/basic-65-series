@@ -16,10 +16,12 @@
 ; *******************************************************************************************
 
 FloatSubtract:
-		lda 	bFlags 						; toggle the sign of B and add.
+		pha 								; toggle the sign of B and add, preserving A.
+		lda 	bFlags 						
 		eor 	#$80
 		sta 	bFlags
-		
+		pla
+
 ; *******************************************************************************************
 ;
 ;							Add iFloat B to iFloat A (also used for subtract)
@@ -27,6 +29,10 @@ FloatSubtract:
 ; *******************************************************************************************
 
 FloatAdd:
+		pha 								; save registers
+		phx
+		phy
+
 		lda 	aExponent 					; check if both integer
 		ora 	bExponent
 		beq 	_FAInteger 					; if so, don't need to normalise
@@ -106,9 +112,14 @@ _FASubtraction:
 		sta 	aFlags
 		bra 	_FAExit
 		;
-		;		Exit, with check for minus zero - fall through here.
+		;		Exit, with check for minus zero
 		;
 _FAExit:
+		jsr 	FloatCheckMinusZero
+		ply 								; restore registers
+		plx
+		pla
+		rts
 
 ; *******************************************************************************************
 ;

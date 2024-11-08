@@ -17,11 +17,17 @@
 ; *******************************************************************************************
 
 FloatDivide: 		
+		pha 								; save registers
+		phx
+		phy
 		;
 		;		Check division by zero.
 		;
 		+Test32B 							; check if B = 0
 		bne 	_FMFDivide 					; if not, do divide
+		ply 								; restore registers
+		plx
+		pla
 		sec
 		rts		
 		;
@@ -52,6 +58,9 @@ _FMFDivide:
 		sta 	aFlags
 
 		jsr 	FloatCheckMinusZero 		; -0 check required here.
+		ply 								; restore registers
+		plx
+		pla
 		clc 								; valid result
 		rts
 ;
@@ -81,17 +90,23 @@ _FFDFail:
 
 ; *******************************************************************************************
 ;
-;							Divide iFloat A by iFloat B (integer) 
+;			Divide iFloat A by iFloat B (integer) . Inputs not checked for integer-ness
 ;								   (CS on division by zero)
 ;
 ; *******************************************************************************************
 
 FloatIntDivide: 							; it's integer division in the Float package !!
+		pha 								; save registers
+		phx
+		phy
 		;
 		;		Check division by zero.
 		;
 		+Test32B 							; check if B = 0
 		bne 	_FMDivide 					; if not, do divide code
+		ply 								; restore registers
+		plx
+		pla
 		sec
 		rts		
 		;
@@ -108,6 +123,9 @@ _FMDivide:
 		sta 	aFlags
 
 		jsr 	FloatCheckMinusZero 		; -0 check required here.
+		ply 								; restore registers
+		plx
+		pla
 		clc 								; valid result
 		rts
 ;

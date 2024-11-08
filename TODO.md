@@ -1,8 +1,5 @@
 # todo list
-- integer division
-- float division
-- integer
-- fractional
+- conversion utility functions ?
 
 
 

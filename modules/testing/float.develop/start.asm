@@ -17,10 +17,12 @@ Boot:
 		bpl 	-
 
 		;jsr 	FloatAdd
+		;jsr 	FloatSubtract
 		;jsr 	FloatMultiply
-		;jsr 	FloatIntDivide
+		jsr 	FloatIntDivide
 		;jsr 	FloatDivide
-		jsr 	FloatInteger
+		;jsr 	FloatInteger
+		;jsr 	FloatFractional
 		
 		jmp 	$FFFF
 

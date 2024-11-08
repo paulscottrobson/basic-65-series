@@ -21,7 +21,7 @@ from mathop import *
 
 class FractionalOperation(UnaryOperation):
 	#
-	#		Divide two numbers
+	#		Get fractional part
 	#
 	def calculate(self,a):
 #		print("Calculating",a.get(),"should be",self.getResult(a))
