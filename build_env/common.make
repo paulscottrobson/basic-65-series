@@ -15,6 +15,7 @@ PYTHON = python3
 #
 ROOTDIR =  $(dir $(realpath $(lastword $(MAKEFILE_LIST))))../
 BINDIR = $(ROOTDIR)bin/
+BUILDDIR = $(ROOTDIR)/build_env/
 SCRIPTDIR = $(ROOTDIR)scripts/
 #
 #		Assembler directives
@@ -31,17 +32,3 @@ X16EMU = /aux/builds/x16-emulator/x16emu -debug -scale 2 -dump R
 ifndef VERBOSE
 .SILENT:
 endif
-#
-#		Default Rules
-#
-asm8: prelim builder
-	echo "Assembling 65C02 code"
-	$(ACME6502)
-
-run8: asm8
-	rm -f dump*.bin
-	$(X16EMU) -c02 -prg $(OBJECT) -run
-
-builder:
-	echo "Building module script" 
-	$(PYTHON) $(SCRIPTDIR)builder.py @$(ROOTDIR)modules $(MODULES) >__build.tmp

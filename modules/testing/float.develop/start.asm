@@ -10,22 +10,33 @@
 ; *******************************************************************************************
 
 Boot:
+		lda 	#testString & $FF
+		sta 	zTemp0
+		lda 	#testString >> 8
+		sta 	zTemp0+1
+
 		ldx 	#11 						; copy in test data.
 -:		lda 	test_float,x
 		sta 	aFlags,x
 		dex
 		bpl 	-
-
+		stz 	exprStackPtr
+		
 		;jsr 	FloatAdd
 		;jsr 	FloatSubtract
 		;jsr 	FloatMultiply
-		jsr 	FloatIntDivide
+		;jsr 	FloatIntDivide
 		;jsr 	FloatDivide
 		;jsr 	FloatInteger
 		;jsr 	FloatFractional
 		
+		jsr 	FloatStringToInteger
+
 		jmp 	$FFFF
 
+
+testString:
+		!text 	"32766X"
 
 
 

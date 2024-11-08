@@ -97,5 +97,20 @@ rExponent:
 rMantissa:
 		+alloc 	4
 
+exprStackPtr:
+		+alloc 	1
+exprStack0:
+		+alloc 	exprStackSize
+exprStack1:
+		+alloc 	exprStackSize
+exprStack2:
+		+alloc 	exprStackSize
+exprStack3:
+		+alloc 	exprStackSize
+exprStack4:
+		+alloc 	exprStackSize
+exprStack5:
+		+alloc 	exprStackSize
+
 		* = codeAddress
 
