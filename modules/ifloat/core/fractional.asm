@@ -11,7 +11,7 @@
 
 ; *******************************************************************************************
 ;
-;							Get fractional part of A
+;							Get fractional part of FPA
 ;
 ; *******************************************************************************************
 
@@ -19,8 +19,8 @@ FloatFractional:
 		pha 								; save registers
 		phx
 		phy
-		jsr 	FloatNormaliseA 			; normalise A
-		stz 	aFlags 						; take absolute value of A
+		jsr 	FloatNormaliseA 			; normalise FPA
+		stz 	aFlags 						; take absolute value of FPA
 
 		lda 	aExponent 					; check exponent
 		bpl 	_FFZero 					; if >= 0 then return zero.

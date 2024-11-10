@@ -11,7 +11,7 @@
 
 ; *******************************************************************************************
 ;
-;										Divide A by 10^A
+;										Divide FPA by 10^A
 ;
 ; *******************************************************************************************
 
@@ -28,7 +28,7 @@ FloatScale10:
 		adc 	bMantissa 					; x 3
 		asl 	 							; x 6
 		tax
-		ldy 	#0 							; index into B
+		ldy 	#0 							; index into FPB
 _FSCCopy:
 		lda 	FloatScalarTable,x 			; copy it
 		sta 	bFlags,y
@@ -40,7 +40,7 @@ _FSCCopy:
 		bra 	_FSCExit
 
 _FSCZero:
-		+Clear32A 							; set the A register to zero.
+		+Clear32A 							; set the FPA register to zero.
 _FSCExit:		
 		ply 								; restore registers
 		plx

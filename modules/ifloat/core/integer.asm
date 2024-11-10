@@ -11,7 +11,7 @@
 
 ; *******************************************************************************************
 ;
-;							Get integer part of A
+;							Get integer part of FPA
 ;
 ; *******************************************************************************************
 
@@ -24,7 +24,7 @@ FloatInteger:
 		bpl 	_FIExit
 		+Test32A 							; zero, then integer
 		beq 	_FIExit
-		jsr 	FloatNormaliseA 			; Normalise A
+		jsr 	FloatNormaliseA 			; Normalise FPA
 _FIConvert:		
 		lda 	aExponent 					; exponent sill negative ?
 		bpl 	_FIExit

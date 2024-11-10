@@ -11,7 +11,7 @@
 
 ; *******************************************************************************************
 ;
-;						Convert string at (zTemp0). Return CS on error.
+;					Convert string at (zTemp0) into FPA. Return CS on error.
 ;		 Behaves like VAL() in that it does not have a problem with ending bad characters
 ;
 ; *******************************************************************************************
@@ -38,7 +38,7 @@ _FSTFNoMinus:
 		;
 		;		The integer part, if there is one.
 		;
-		+Clear32A 							; zero A
+		+Clear32A 							; zero FPA
 		ldy 	#1 							; this is the amount to skip if decimal.
 		lda 	(zTemp0) 					; is it '.xxxxx' VAL(".12") => 0.12
 		cmp 	#"."						; if so, convert to decimal.
@@ -67,11 +67,11 @@ _FSTFNoCarry:
 		bcc 	_FSTFExitOkay
 		cmp 	#'9'+1
 		bcs 	_FSTFExitOkay
-		+Push32A 							; push A on the stack.
+		+Push32A 							; push FPA on the stack.
 		jsr 	FloatStringToInteger 		; get the Decimal Point bit, divisor is in A
 		bcs 	_FSTFExit 					; bad number.
 		jsr 	FloatScale10 				; divide by 10^A
-		+Pop32B 				 			; A is fractional part, B integer part
+		+Pop32B 				 			; FPA is fractional part, FPB integer part
 		jsr 	FloatAdd 					; add them together.
 _FSTFExitOkay:
 		pla 								; get flags

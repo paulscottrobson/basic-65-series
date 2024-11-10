@@ -11,7 +11,7 @@
 	
 ; *******************************************************************************************
 ;
-;							  Divide iFloat A by iFloat B (float)
+;							  Divide iFloat FPA by iFloat FPB (float)
 ;								   (CS on division by zero)
 ;
 ; *******************************************************************************************
@@ -23,7 +23,7 @@ FloatDivide:
 		;
 		;		Check division by zero.
 		;
-		+Test32B 							; check if B = 0
+		+Test32B 							; check if FPB = 0
 		bne 	_FMFDivide 					; if not, do divide
 		ply 								; restore registers
 		plx
@@ -34,7 +34,7 @@ FloatDivide:
 		;		FP Divide
 		;
 _FMFDivide:
-		jsr 	FloatNormaliseA 			; normalise A & B 					
+		jsr 	FloatNormaliseA 			; normalise FPA & FPB 					
 		jsr 	FloatNormaliseB 					
 
 		lda 	aFlags 						; calculate new sign and push on stack
@@ -49,7 +49,7 @@ _FMFDivide:
 		pha
 
 		jsr 	_FFDMain 					; the main float division routine
-		+Copy32RA 							; A := R
+		+Copy32RA 							; FPA := FPR
 
 		pla 								; restore exponent.
 		sta 	aExponent 			
@@ -67,7 +67,7 @@ _FMFDivide:
 ;		Main FP Division routine.
 ;
 _FFDMain:
-		ldx 	#5 							; clear R
+		ldx 	#5 							; clear FPR
 _FFDClearR:
 		stz 	rFlags,x
 		dex
@@ -78,7 +78,7 @@ _FFDLoop:
 		pha 								; save counter.
 		jsr 	FloatDivTrySubtract 		; try to subtract
 		php 								; save the result
-		jsr 	FloatDivShiftARLeft 		; shift A:R left one.
+		jsr 	FloatDivShiftARLeft 		; shift FPA:FPR left one.
 		plp 								; restore the result
 		bcc 	_FFDFail 					; could not subtract
 		inc 	rMantissa+0 				; set bit 0 (cleared by shift left)
@@ -102,7 +102,7 @@ FloatIntDivide: 							; it's integer division in the Float package !!
 		;
 		;		Check division by zero.
 		;
-		+Test32B 							; check if B = 0
+		+Test32B 							; check if FPB = 0
 		bne 	_FMDivide 					; if not, do divide code
 		ply 								; restore registers
 		plx
@@ -117,7 +117,7 @@ _FMDivide:
 		eor 	bFlags
 		pha
 		jsr 	_FIDMain 					; the main integer division routine
-		+Copy32RA 							; A := R
+		+Copy32RA 							; FPA := FPR
 		pla  								; restore sign.
 		and 	#$7F
 		sta 	aFlags
@@ -132,12 +132,12 @@ _FMDivide:
 ;		Main integer division routine.
 ;
 _FIDMain:
-		+Copy32AR 							; R := A
-		+Clear32A 							; A := 0
+		+Copy32AR 							; FPR := FPA
+		+Clear32A 							; FPA := 0
 		lda 	#32 						; Main loop counter
 _FIDLoop:
 		pha 								; save counter.
-		jsr 	FloatDivShiftARLeft 		; shift A:R left one.
+		jsr 	FloatDivShiftARLeft 		; shift FPA:FPR left one.
 		jsr 	FloatDivTrySubtract 		; try to subtract
 		bcc 	_FIDFail 					; could not subtract
 		inc 	rMantissa+0 				; set bit 0 (cleared by shift left)
@@ -149,7 +149,7 @@ _FIDFail:
 
 ; *******************************************************************************************
 ;
-;									Shift A:R left one
+;									Shift FPA:FPR left one
 ;
 ; *******************************************************************************************
 
@@ -166,14 +166,14 @@ FloatDivShiftARLeft:
 
 ; *******************************************************************************************
 ;
-;						Try to subtract B from A. If it works, return CS
+;						Try to subtract FPB from FPA. If it works, return CS
 ;
 ; *******************************************************************************************
 
 FloatDivTrySubtract:
-		+Sub32AB 							; subtract B from A
+		+Sub32AB 							; subtract FPB from FPA
 		bcs 	_FDTSExit 					; it worked okay.
-		+Add32AB 							; failed, so write it back
+		+Add32AB 							; failed, so add it back
 		clc 								; carry must be clear.
 _FDTSExit:
 		rts		

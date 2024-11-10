@@ -97,6 +97,11 @@ rExponent:
 rMantissa:
 		+alloc 	4
 
+convBufferSize:
+		+alloc 	1
+convBufferString:
+		+alloc 	16
+
 exprStackPtr:
 		+alloc 	1
 exprStack0:

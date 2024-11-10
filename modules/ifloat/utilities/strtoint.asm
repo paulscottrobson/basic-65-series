@@ -11,7 +11,7 @@
 
 ; *******************************************************************************************
 ;
-;		(zTemp0) points to a numeric string, extract decimal integer from it to A (no minus 
+;		(zTemp0) points to a numeric string, extract decimal integer from it to FPA (no minus 
 ;		prefix). Return CS on error (overflow, no number), and return in A the number of 
 ;		characters removed.
 ;
@@ -21,7 +21,7 @@ FloatStringToInteger:
 		phx
 		phy
 
-		+Clear32A 							; set the A register to zero.
+		+Clear32A 							; set the F{A register to zero.
 		ldy 	#0 							; start from here.
 _FSILoop:	
 		lda 	(zTemp0),y 					; get next character
@@ -30,7 +30,7 @@ _FSILoop:
 		cmp 	#'9'+1
 		bcs 	_FSIExit	
 
-		lda 	#10 						; multiply A by 10
+		lda 	#10 						; multiply FPA by 10
 		+Set32B
 		jsr 	FloatMultiply
 		lda 	(zTemp0),y 					; add number.

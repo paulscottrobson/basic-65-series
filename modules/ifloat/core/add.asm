@@ -11,12 +11,12 @@
 
 ; *******************************************************************************************
 ;
-;							Subtract iFloat B from iFloat A
+;						  Subtract iFloat FPB from iFloat FPA
 ;
 ; *******************************************************************************************
 
 FloatSubtract:
-		pha 								; toggle the sign of B and add, preserving A.
+		pha 								; toggle the sign of FPB and add
 		lda 	bFlags 						
 		eor 	#$80
 		sta 	bFlags
@@ -24,7 +24,7 @@ FloatSubtract:
 
 ; *******************************************************************************************
 ;
-;							Add iFloat B to iFloat A (also used for subtract)
+;						Add iFloat FPB to iFloat FPA (also used for subtract)
 ;
 ; *******************************************************************************************
 
@@ -39,17 +39,17 @@ FloatAdd:
 		;
 		;		Check zero.
 		;
-		+Test32B 							; check if B = 0
-		beq 	_FAExit 					; if so, just return A.
-		+Test32A 							; check if A = 0
+		+Test32B 							; check if FPB = 0
+		beq 	_FAExit 					; if so, just return FPA.
+		+Test32A 							; check if FPA = 0
 		bne 	_FAFloatingPoint 			; if not, then do FP addition.
-		+Copy32BA 							; copy B to A
+		+Copy32BA 							; copy FPB to FPA
 		bra 	_FAExit 					; and exit
 		;
 		;		Floating point add/subtract
 		;
 _FAFloatingPoint:
-		jsr 	FloatNormaliseA 			; normalise A & B 					
+		jsr 	FloatNormaliseA 			; normalise FPA & FPB 					
 		jsr 	FloatNormaliseB 					
 		;
 		;		Work out the common exponent for the arithmetic.
@@ -63,9 +63,9 @@ _FAFloatingPoint:
 		ldx 	bExponent 					; get the lower value.
 +		
 		;
-		;		Shift both mantissa/exponent to match X in A
+		;		Shift both mantissa/exponent to match X in FPA
 		;
-- 		cpx 	aExponent 					; reached required exponent (A)
+- 		cpx 	aExponent 					; reached required exponent (FPA)
 		beq 	+
 		phx
 		+Shr32A 							; shift right and adjust exponent, preserving the target
@@ -76,7 +76,7 @@ _FAFloatingPoint:
 		;
 		;		Shift both mantissa/exponent to match X in B
 		;
-- 		cpx 	bExponent 					; reached required exponent (B)
+- 		cpx 	bExponent 					; reached required exponent (FPB)
 		beq 	+
 		phx
 		+Shr32B 							; shift right and adjust exponent, preserving the target
@@ -95,7 +95,7 @@ _FAAddition:
 		;
 		;		Integer arithmetic : Addition
 		;
-		+Add32AB  							; add B to A - sign of result is inherited.
+		+Add32AB  							; add FPB to FPA - sign of result is inherited.
 		bpl 	_FAExit 					; no overflow, bit 31 of mantissa clear.
 		+Shr32A 							; fix up the mantissa
 		inc 	aExponent 					; bump the exponent
@@ -104,9 +104,9 @@ _FAAddition:
 		;		Integer arithmetic : Subtraction
 		;	
 _FASubtraction:
-		+Sub32AB 							; subtract B from A
+		+Sub32AB 							; subtract FPB from FPA
 		bpl 	_FAExit 					; no underflow, then exit.
-		+Neg32A 							; negate A mantissa 
+		+Neg32A 							; negate FPA mantissa 
 		lda 	aFlags 						; toggle the sign flag
 		eor 	#$80
 		sta 	aFlags
@@ -123,7 +123,7 @@ _FAExit:
 
 ; *******************************************************************************************
 ;
-;				Test for minus zero as we have a sign and magniturde system
+;			Test FPA for minus zero as we have a sign and magnitude system
 ;
 ; *******************************************************************************************
 
@@ -143,12 +143,12 @@ _FCMZExit:
 
 ; *******************************************************************************************
 ;
-;									Normalise A & B
+;									Normalise FPA & FPB
 ;
 ; *******************************************************************************************
 
 FloatNormaliseA:
-		+Test32A 							; check A zero
+		+Test32A 							; check FPA zero
 		beq 	_NAExit		
 -:
 		lda 	aMantissa+3 				; check normalised
@@ -161,7 +161,7 @@ _NAExit:
 		rts				
 		
 FloatNormaliseB:
-		+Test32B 							; check A zero
+		+Test32B 							; check FPB zero
 		beq 	_NBExit
 -:
 		lda 	bMantissa+3 				; check normalised
