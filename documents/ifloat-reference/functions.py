@@ -152,11 +152,30 @@ class LogCalculator(PolyCalculator):
 
 		x = r - 1  																		# taylor series
 		logPoly = []
-		for i in range(1,14):
+		for i in range(1,10):
 			c = 1/i if (i & 1) != 0 else -1/i
 			logPoly.insert(0,c)
 		r = self.evaluatePolynomial(x,logPoly) * x 
 		r = r + math.log(2)*exp
+		return r
+
+# *******************************************************************************************
+#
+#								Calculate exp(x)
+#
+# *******************************************************************************************
+
+class ExpCalculator(PolyCalculator):
+	#
+	#		Calculate polynomial function log(x)
+	#
+	def calculate(self,r):
+		expPoly = []
+		for i in range(1,24):
+			c = 1/self.factorial(i)
+			expPoly.insert(0,c)
+		expPoly.append(0)
+		r = self.evaluatePolynomial(r,expPoly)+1
 		return r
 
 if __name__ == "__main__":
@@ -199,10 +218,19 @@ if __name__ == "__main__":
 	#
 	#		Log test 
 	#
-	if True:
+	if False:
 		for i in range(5,100,3):
 			a = i / 10
 			t = math.log(a)
 			print("{0:5} {1:8.3f} {2:8.3f} {3:8.3f}".format(a,t,LogCalculator().calculate(a),abs(t-LogCalculator().calculate(a))))
+		print()
+	#
+	#		Log test 
+	#
+	if True:
+		for i in range(-145,145,15):
+			a = i / 10
+			t = math.exp(a)
+			print("{0:5} {1:8.3f} {2:8.3f} {3:8.3f}".format(a,t,ExpCalculator().calculate(a),abs(t-ExpCalculator().calculate(a))))
 		print()
 
