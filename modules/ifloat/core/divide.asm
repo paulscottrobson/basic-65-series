@@ -117,6 +117,8 @@ _FMDivide:
 		eor 	bFlags
 		pha
 		jsr 	_FIDMain 					; the main integer division routine
+		lda 	aMantissa 					; save the LSB of the remainder for later
+		sta 	modulusLowByte		
 		+Copy32RA 							; FPA := FPR
 		pla  								; restore sign.
 		and 	#$7F

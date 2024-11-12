@@ -22,7 +22,8 @@ Boot:
 		bpl 	-
 
 		stz 	exprStackPtr 				; clear out expression stack.
-		
+		stz 	convBufferSize
+
 		;jsr 	FloatAdd
 		;jsr 	FloatSubtract
 		;jsr 	FloatMultiply
@@ -33,12 +34,13 @@ Boot:
 		;jsr 	FloatStringToInteger
 		;lda 	#2
 		;jsr 	FloatScale10
-		jsr 	FloatStringToFloat
+		jsr 	FloatIntegerToDecimalString
 
+		+debug
 		jmp 	$FFFF
 
 testString:
-		!text 	"-327.67X"
+		!text 	"-32767X"
 
 
 

@@ -86,6 +86,11 @@ zTemp2:
 
 		* = dataSpace
 
+convBufferSize:
+		+alloc 	1
+convBufferString:
+		+alloc 	16
+
 		!if mathInZeroPage = 0 {
 		+MathRegisterSet
 		}
@@ -97,11 +102,10 @@ rExponent:
 rMantissa:
 		+alloc 	4
 
-convBufferSize:
+baseConvert:
 		+alloc 	1
-convBufferString:
-		+alloc 	16
-
+modulusLowByte:
+		+alloc 	1	
 exprStackPtr:
 		+alloc 	1
 exprStack0:
