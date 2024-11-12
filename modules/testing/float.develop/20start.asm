@@ -34,9 +34,8 @@ Boot:
 		;jsr 	FloatStringToInteger
 		;lda 	#2
 		;jsr 	FloatScale10
-		jsr 	FloatIntegerToDecimalString
+		jsr 	FloatFloatToString
 
-		+debug
 		jmp 	$FFFF
 
 testString:
