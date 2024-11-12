@@ -152,10 +152,11 @@ class LogCalculator(PolyCalculator):
 
 		x = r - 1  																		# taylor series
 		logPoly = []
-		for i in range(1,9):
+		for i in range(1,14):
 			c = 1/i if (i & 1) != 0 else -1/i
 			logPoly.insert(0,c)
-		r = self.evaluatePolynomial(x,logPoly) * x + math.log(2)*exp
+		r = self.evaluatePolynomial(x,logPoly) * x 
+		r = r + math.log(2)*exp
 		return r
 
 if __name__ == "__main__":
@@ -199,7 +200,7 @@ if __name__ == "__main__":
 	#		Log test 
 	#
 	if True:
-		for i in range(1,100,5):
+		for i in range(5,100,3):
 			a = i / 10
 			t = math.log(a)
 			print("{0:5} {1:8.3f} {2:8.3f} {3:8.3f}".format(a,t,LogCalculator().calculate(a),abs(t-LogCalculator().calculate(a))))
