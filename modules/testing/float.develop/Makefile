@@ -13,7 +13,7 @@ include ../../../build_env/common.make
 include $(BUILDDIR)build.make
 
 OBJECT = $(BINDIR)test.prg
-MODULES = common ifloat testing:float.develop
+MODULES = common ifloat polynomial:active testing:float.develop
 
 all: asm8
 
