@@ -170,14 +170,11 @@ class ExpCalculator(PolyCalculator):
 	#		Calculate polynomial function log(x)
 	#
 	def calculate(self,r):
-		expPoly = []
-		for i in range(1,24):
-			c = 1/self.factorial(i)
-			expPoly.insert(0,c)
-		expPoly.append(0)
-		r = self.evaluatePolynomial(r,expPoly)+1
+		x = r
+		# This polynomial calculates 2^x
+		pow2Poly = [ 2.1498763701e-5 ,1.4352314037e-4 ,1.3422634825e-3 ,9.6140170135e-3 ,5.5505126860e-2 ,0.24022638460 ,0.69314718618, 1.0 ]
+		r = self.evaluatePolynomial(x,pow2Poly)
 		return r
-
 if __name__ == "__main__":
 	random.seed(42)
 	#
@@ -228,9 +225,15 @@ if __name__ == "__main__":
 	#		Log test 
 	#
 	if True:
-		for i in range(-145,145,15):
+		for i in range(-20,140,10):
 			a = i / 10
-			t = math.exp(a)
+			t = pow(2,a)
 			print("{0:5} {1:8.3f} {2:8.3f} {3:8.3f}".format(a,t,ExpCalculator().calculate(a),abs(t-ExpCalculator().calculate(a))))
 		print()
 
+
+
+#    divide by log(2) (in practice, multiply by 1/log(2))
+#    take the integral part and the fractional part
+#    use Taylor series on the fractional part to approximate the exponential function 2^x = exp(x*log(2)) on the interval [0,1]
+#    adjust the binary exponent based on the integral part
