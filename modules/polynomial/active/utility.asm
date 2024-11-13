@@ -11,6 +11,52 @@
 
 ; *******************************************************************************************
 ;
+;			Evaluate polynomial at offset X from PolynomialData using value in FPA
+;										(Horner's method)
+;
+; *******************************************************************************************
+
+PolyEvaluate:
+		lda 	PolynomialData,x 			; get the number to do
+		inx  								; point to first number.
+		sta 	polyCoefficientCount 		; count of numbers
+
+		ldy 	#5 							; copy poly x to workspace
+_PECopy1:
+		lda 	aFlags,y
+		sta 	polyTempFloat,y
+		dey 
+		bpl 	_PECopy1
+
+		+Clear32A 							; set FPA to zero.
+
+_PEEvaluateLoop:		
+		ldy 	#5 							; copy X back to FPB
+_PECopy2:
+		lda 	polyTempFloat,y
+		sta 	bFlags,y
+		dey 
+		bpl 	_PECopy2
+		jsr 	FloatMultiply 				; and multiply into FPA
+
+		ldy 	#0 							; copy the next coefficient into FPB
+_PECopy3:
+		lda 	PolynomialData,x
+		sta 	bFlags,y
+		inx		
+		iny
+		cpy 	#6
+		bne 	_PECopy3
+
+		jsr 	FloatAdd 					; and add into FPB
+
+		dec 	polyCoefficientCount 		; do for all coefficients
+		bne 	_PEEvaluateLoop
+
+		rts
+
+; *******************************************************************************************
+;
 ;						Load Floating Point value, address following to FPA/FPB.
 ;
 ; *******************************************************************************************

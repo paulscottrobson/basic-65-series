@@ -86,6 +86,10 @@ zTemp2:
 
 		* = dataSpace
 
+polyCoefficientCount:
+		+alloc 	1
+polyTempFloat:
+		+alloc 	6		
 convBufferSize:
 		+alloc 	1
 convBufferString:

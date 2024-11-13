@@ -36,9 +36,8 @@ Boot:
 		;jsr 	FloatScale10
 		;jsr 	FloatFloatToString
 
-		jsr 	PolyCopyFloatA
-		!word	FloatConst_1Div2Pi
-
+		jsr 	PolySine
+		
 		jmp 	$FFFF
 
 testString:
