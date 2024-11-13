@@ -19,8 +19,10 @@ all: asm8
 
 prelim:
 	cp $(ROOTDIR)documents/ifloat-reference/ifloat.py $(SCRIPTDIR)/__ifloat_copy.py
+	make -C ../../polynomial
 	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py test_float 3.14159 >_testdata.asm
 
 show:
 	$(PYTHON) $(SCRIPTDIR)show_ifloat.py dump.bin 0x22
+	$(PYTHON) $(SCRIPTDIR)show_ifloat.py dump.bin 0x28
 	$(PYTHON) $(SCRIPTDIR)show_string.py dump.bin 0x400

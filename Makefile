@@ -15,3 +15,6 @@ MODULE = modules/testing/float.develop
 
 all: 
 	make -C $(MODULE) run8 show
+
+build:
+	make -C $(MODULE) asm8

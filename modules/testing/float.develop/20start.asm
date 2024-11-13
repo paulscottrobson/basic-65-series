@@ -34,7 +34,10 @@ Boot:
 		;jsr 	FloatStringToInteger
 		;lda 	#2
 		;jsr 	FloatScale10
-		jsr 	FloatFloatToString
+		;jsr 	FloatFloatToString
+
+		jsr 	PolyCopyFloatA
+		!word	FloatConst_1Div2Pi
 
 		jmp 	$FFFF
 
