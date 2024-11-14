@@ -88,15 +88,17 @@ class SineCalculator(PolyCalculator):
 		#
 		f = abs(f)   																	# Get the fractional part, force into range.
 		f = f - math.floor(f)
-		quadrant = int(f * 4) 															# quadrant 0-3 work out.
+		#
+		f = f * 4  																		# multiply to get quadrant
+		quadrant = int(f) 																# quadrant 0-3 work out.
+		f = f - int(f)  																# take fractional part
 		#
 		sign = 1 if r >= 0 else -1  													# sin(-x) = -sin(x)
-		if quadrant >= 2:  																# quadrant 2 + 3 are -ve quadrant 1 + 2
+		if quadrant >= 2:  																# quadrant 2 + 3 are -ve quadrant 0 + 1
 			sign = -sign
-			f = f - 0.5
-		if quadrant == 1 or quadrant == 3: 												# quadrant 1 and 3, flip
-			f = 0.5 + (-f)
-		#
+		if quadrant == 1 or quadrant == 3: 												# quadrant 1 and 3, flip as curve is backwards
+			f = 1.0 + (-f)
+
 		sinePoly = self.getPolynomial()
 		result = self.evaluatePolynomial(f*f,sinePoly) * f   							# evaluate using x^2 and multiply by x
 		result = result * sign
@@ -107,8 +109,10 @@ class SineCalculator(PolyCalculator):
 	def getPolynomial(self):
 		sinePoly = []  																	# calculate the sine polynomial
 		for i in range(0,5):
-			coefficient = 1.0 / self.factorial(i*2+1)
+			coefficient = 1.0 / self.factorial(i*2+1) 									# normal polynomial
 			coefficient = coefficient if (i % 2) == 0 else -coefficient
+			coefficient = coefficient / pow(4*4,i)  									# adjust for the divide by 4 pre squaring
+			coefficient = coefficient / 4  												# adjust for the final result being divided by 4.
 			coefficient = coefficient * pow(2 * math.pi ,i*2+1)
 			sinePoly.insert(0,coefficient)
 		return sinePoly
