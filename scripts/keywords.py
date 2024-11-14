@@ -22,6 +22,7 @@ class Keywords(object):
 	def getStructures(self):
 		return  self.process("""
 			WHILE:+ WEND:- REPEAT:+ UNTIL:- FOR:+ NEXT:- CASE:+ ENDCASE:- DO:+ LOOP:- PROC:+ ENDPROC:-
+			IF:+ THEN:- ENDIF:-
 			""")
 	#
 	#		Get the binary operator keywords (these are $90-$0F)
@@ -57,15 +58,15 @@ class Keywords(object):
 	def getBaseKeywords(self):
 		return  self.process("""
 			: ; , ) #
-			WHEN IF THEN  EXIT TO STEP REM POKE PRINT 
-			DOKE LOCAL ELSE ENDIF
+			WHEN EXIT TO STEP REM POKE PRINT 
+			DOKE LOCAL ELSE 
 		""")
 	#
 	#		Get the Shift-1 Keywords (less common, or slow)
 	#
 	def getShift1Keywords(self):
 		return  self.process("""
-			END READ DATA INPUT DIM LET GOTO RUN RUN 
+			END READ DATA INPUT DIM LET GOTO RUN STOP 
 			RESTORE GOSUB RETURN WAIT LOAD SAVE VERIFY ON DEF 
 			CONT LIST CLR CMD SYS OPEN CLOSE GET NEW GO 
 			ASSERT 
