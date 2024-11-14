@@ -11,4 +11,7 @@
 
 import math
 
-print(math.sin(0.5))
+print(math.cos(1.5))
+print(math.cos(3.0))
+print(math.cos(4.5))
+print(math.cos(6.0))

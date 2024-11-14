@@ -24,5 +24,3 @@ all:
 	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py FloatConst_PiDiv2 		"math.pi/2" 			>>active/_constants.asm
 	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py FloatConst_Log2 		"math.log(2)" 			>>active/_constants.asm
 	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py FloatConst_Log2_E 		"math.log(math.e,2)" 	>>active/_constants.asm
-	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py FloatConst_0_5 		"0.5" 					>>active/_constants.asm	
-	$(PYTHON) $(SCRIPTDIR)generate_ifloat.py FloatConst_Minus0_5 	"-0.5" 					>>active/_constants.asm		

@@ -36,7 +36,7 @@ Boot:
 		;jsr 	FloatScale10
 		;jsr 	FloatFloatToString
 
-		jsr 	PolySine
+		jsr 	PolyCosine
 		
 		jmp 	$FFFF
 
