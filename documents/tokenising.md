@@ -12,6 +12,8 @@
 | 90-9F | Binary operator tokens + - * /  : AND OR XOR  > : = < >= <= : <> >> << (1 free may be ^) |
 | A0    | End of Line [EOL]                                            |
 | A1-A3 | 3 shifts [SH1,SH2,SH3] shifted token must be in the range 90-FF |
-| A4-   | Function tokens (up to a fixed constant)                     |
+| A4    | String token [Length] [String data]                          |
+| A5    | Decimal constant 0-1 follows 								   |
+| A6-   | Function tokens (up to a fixed constant)                     |
 | -FF   | (from a fixed constant) Other tokens including punctuation like ':' |
 
