@@ -13,5 +13,5 @@ import math
 
 print(math.atan(0.4))
 print(math.atan(0.9))
-print(math.atan(1.1))
+print(math.atan(1.0))
 print(math.atan(3.0))

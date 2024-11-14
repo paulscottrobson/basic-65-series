@@ -2,6 +2,9 @@
 - exp
 - log
 
-- improve arctan accuracy ?
+
+
+# fixes/enhancements
+- improve arctan accuracy close to +/- 1.0
 - optimise short multiply ? Fast 8x8 ?
 - overflow ?
