@@ -54,7 +54,7 @@ _FMFDivide:
 		pla 								; restore exponent.
 		sta 	aExponent 			
 		pla  								; restore sign.
-		and 	#$7F
+		and 	#$80
 		sta 	aFlags
 
 		jsr 	FloatCheckMinusZero 		; -0 check required here.

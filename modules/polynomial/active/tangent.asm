@@ -31,7 +31,6 @@ PolyTangent:
 		+Test32B 							; check cos(x) is zero.
 		sec 								; if so exit with carry set.
 		beq 	_PTExit
-		+debug
 		jsr 	FloatDivide 				; work out tangent
 		clc 								; no error.
 _PTExit:		

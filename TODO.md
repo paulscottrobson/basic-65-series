@@ -1,5 +1,4 @@
 # todo list
-- tan
 - arctan
 - exp
 - log
