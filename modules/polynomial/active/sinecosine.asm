@@ -43,14 +43,14 @@ PolySine:
 		sta 	polySign 					
 		stz 	aFlags 						; take absolute value
 		;
-		;		Divide FPA by 2.Pi
+		;		Divide FPA by 2.Pi and take fractional part, forcing result into the '360' range
 		;
 		jsr 	PolyCopyFloatB 				; multiply by 1 / (2.Pi) (e.g. divide by 2.Pi)
 		!word	FloatConst_1Div2Pi
 		jsr 	FloatMultiply
 		jsr 	FloatFractional 			; take the fractional part.
 		;
-		;		Rounded into 0-360 (in scaled radians), so x 4 to get the quadrant
+		;		Rounded into 0-360 (in scaled radians), so x 4 to get the quadrant (0=0-90,1=90-180,2=180-270,3=270-360)
 		;
 		inc 	aExponent 					; x 2
 		inc 	aExponent 					; x 4
@@ -73,9 +73,9 @@ _PSNotQ23:
 		pla 								; restore the quadrant
 		and 	#1 							; is it quadrant 1 or 3
 		beq 	_PSNotQ13
-		lda 	#$80 						; make it -x (calculating 1-x)
+		lda 	#$80 						; make FPA -x (calculating 1-x)
 		sta 	aFlags
-		lda 	#1 							; B = 1, so -x + 1
+		lda 	#1 							; B = 1, so -x + 1 being done here.
 		+Set32B
 		jsr 	FloatAdd
 _PSNotQ13:		
@@ -108,4 +108,3 @@ _PSExit:
 		plx
 		pla
 		rts		
-
