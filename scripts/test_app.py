@@ -11,4 +11,4 @@
 
 import math
 
-print(math.sin(-0.5))
+print(math.sin(0.5))

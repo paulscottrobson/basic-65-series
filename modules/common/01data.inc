@@ -89,7 +89,9 @@ zTemp2:
 polyCoefficientCount:
 		+alloc 	1
 polyTempFloat:
-		+alloc 	6		
+		+alloc 	6	
+polySign:
+		+alloc 	1			
 convBufferSize:
 		+alloc 	1
 convBufferString:
