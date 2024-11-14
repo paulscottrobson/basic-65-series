@@ -15,7 +15,6 @@
 ;
 ; *******************************************************************************************
 
-
 PolyCosine:
 PolySine:		
 		+Clear32A 							; return zero as not implemented
