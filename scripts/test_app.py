@@ -11,9 +11,4 @@
 
 import math
 
-print(math.exp(-1.4))
-print(math.exp(-11.4))
-print(math.exp(0.4))
-print(math.exp(1.4))
-print(math.exp(2.4))
-print(math.exp(12.4))
+print(math.sqrt(11.4))

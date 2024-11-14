@@ -1,9 +1,9 @@
 ; *******************************************************************************************
 ; *******************************************************************************************
 ;
-;		Name : 		dummy.asm
-;		Purpose :	Dummy polynomial functions
-;		Date :		13th November 2024
+;		Name : 		squareroot.asm
+;		Purpose :	Square root function
+;		Date :		14th November 2024
 ;		Author : 	Paul Robson (paul@robsons.org.uk)
 ;
 ; *******************************************************************************************
@@ -11,17 +11,25 @@
 
 ; *******************************************************************************************
 ;
-;							Dummy Polynomial evaluation stubs
+;						Calculate the square root of FPA. CS on error
 ;
 ; *******************************************************************************************
 
-PolyCosine:
-PolySine:
-PolyTangent:		
-PolyArcTangent:
-PolyLogarithmE:
-PolyExponent:
 PolySquareRoot:
-		+Clear32A 							; return zero as not implemented
-		sec 								; they always fail, even though some actually can't theoretically.	
+		pha
+		phx
+		phy
+		bit 	aFlags 						; negative
+		sec
+		bmi 	_PSRExit 					; if so exit with carry set
+
+		jsr 	PolyLogarithmE 				; Log(FPA)
+		dec 	aExponent 					; / 2
+		jsr 	PolyExponent 				; Exp(FPA)
+		clc
+_PSRExit:
+		ply
+		plx
+		pla
 		rts
+
