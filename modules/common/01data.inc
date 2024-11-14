@@ -98,7 +98,9 @@ polyTempFloat:
 polySign:
 		+alloc 	1			
 polyFlag:
-		+alloc 	1			
+		+alloc 	1	
+polyExponent:
+		+alloc 	1				
 
 		!if mathInZeroPage = 0 {
 		+MathRegisterSet

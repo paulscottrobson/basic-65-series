@@ -11,6 +11,8 @@
 
 import math
 
+print(math.exp(-1.4))
+print(math.exp(-11.4))
 print(math.exp(0.4))
 print(math.exp(1.4))
 print(math.exp(2.4))
