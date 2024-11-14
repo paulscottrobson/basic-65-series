@@ -18,7 +18,9 @@ PolynomialSineData:
 ;	 Polynomial to evaluate Arctan
 ;
 PolynomialArctanData:
-	!byte	9
+	!byte	11
+	!byte	$00,$dd,$62,$18,$86,$61 ; 0.047619047619047616
+	!byte	$80,$dd,$f3,$1a,$ca,$6b ; -0.05263157894736842
 	!byte	$00,$dd,$78,$78,$78,$78 ; 0.058823529411764705
 	!byte	$80,$de,$44,$44,$44,$44 ; -0.06666666666666667
 	!byte	$00,$de,$4f,$ec,$c4,$4e ; 0.07692307692307693

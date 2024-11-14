@@ -92,6 +92,9 @@ polyTempFloat:
 		+alloc 	6	
 polySign:
 		+alloc 	1			
+polyFlag:
+		+alloc 	1			
+
 convBufferSize:
 		+alloc 	1
 convBufferString:

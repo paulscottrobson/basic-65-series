@@ -16,7 +16,9 @@
 ; *******************************************************************************************
 
 PolyCosine:
-PolySine:		
+PolySine:
+PolyTangent:		
+PolyArcTangent:
 		+Clear32A 							; return zero as not implemented
 		sec 								; they always fail, even though some actually can't theoretically.	
 		rts

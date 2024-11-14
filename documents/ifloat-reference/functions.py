@@ -187,7 +187,7 @@ class ArcTanCalculator(PolyCalculator):
 	#
 	def getPolynomial(self):
 		atanPoly = []  																	# calculate the atan polynomial
-		for i in range(0,9):
+		for i in range(0,10):
 			coefficient = 1.0 / (i*2+1)
 			coefficient = coefficient if (i % 2) == 0 else -coefficient
 			atanPoly.insert(0,coefficient)

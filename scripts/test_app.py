@@ -11,7 +11,7 @@
 
 import math
 
-print(math.tan(1.5))
-print(math.tan(3.0))
-print(math.tan(4.5))
-print(math.tan(6.0))
+print(math.atan(0.4))
+print(math.atan(0.9))
+print(math.atan(1.1))
+print(math.atan(3.0))
