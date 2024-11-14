@@ -86,6 +86,11 @@ zTemp2:
 
 		* = dataSpace
 
+convBufferSize:
+		+alloc 	1
+convBufferString:
+		+alloc 	16
+
 polyCoefficientCount:
 		+alloc 	1
 polyTempFloat:
@@ -94,11 +99,6 @@ polySign:
 		+alloc 	1			
 polyFlag:
 		+alloc 	1			
-
-convBufferSize:
-		+alloc 	1
-convBufferString:
-		+alloc 	16
 
 		!if mathInZeroPage = 0 {
 		+MathRegisterSet

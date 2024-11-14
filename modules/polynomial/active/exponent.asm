@@ -1,9 +1,9 @@
 ; *******************************************************************************************
 ; *******************************************************************************************
 ;
-;		Name : 		dummy.asm
-;		Purpose :	Dummy polynomial functions
-;		Date :		13th November 2024
+;		Name : 		exponent.asm
+;		Purpose :	Exponent evaluation
+;		Date :		14th November 2024
 ;		Author : 	Paul Robson (paul@robsons.org.uk)
 ;
 ; *******************************************************************************************
@@ -11,16 +11,18 @@
 
 ; *******************************************************************************************
 ;
-;							Dummy Polynomial evaluation stubs
+;									Calculation of e^FPA 
 ;
 ; *******************************************************************************************
 
-PolyCosine:
-PolySine:
-PolyTangent:		
-PolyArcTangent:
-PolyLogarithmE:
 PolyExponent:
-		+Clear32A 							; return zero as not implemented
-		sec 								; they always fail, even though some actually can't theoretically.	
+		pha
+		phx
+		phy
+
+_PEXExit:
+		ply
+		plx
+		pla
 		rts
+

@@ -11,7 +11,7 @@
 
 import math
 
-print(math.atan(0.4))
-print(math.atan(0.9))
-print(math.atan(1.0))
-print(math.atan(3.0))
+print(math.exp(0.4))
+print(math.exp(1.4))
+print(math.exp(2.4))
+print(math.exp(12.4))

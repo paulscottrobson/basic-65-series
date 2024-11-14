@@ -1,8 +1,5 @@
 # todo list
 - exp
-- log
-
-
 
 # fixes/enhancements
 - improve arctan accuracy close to +/- 1.0

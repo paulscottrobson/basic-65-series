@@ -24,7 +24,7 @@ Boot:
 		stz 	exprStackPtr 				; clear out expression stack.
 		stz 	convBufferSize
 
-		;jsr 	FloatAdd
+		;jsr 	FloatAdd	
 		;jsr 	FloatSubtract
 		;jsr 	FloatMultiply
 		;jsr 	FloatIntDivide
@@ -36,7 +36,7 @@ Boot:
 		;jsr 	FloatScale10
 		;jsr 	FloatFloatToString
 
-		jsr 	PolyLogarithmE
+		jsr 	PolyExponent
 		
 		jmp 	$FFFF
 
