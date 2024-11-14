@@ -36,7 +36,7 @@ Boot:
 		;jsr 	FloatScale10
 		;jsr 	FloatFloatToString
 
-		jsr 	PolyArcTangent
+		jsr 	PolyLogarithmE
 		
 		jmp 	$FFFF
 

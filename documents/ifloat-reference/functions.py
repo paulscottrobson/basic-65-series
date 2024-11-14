@@ -204,6 +204,8 @@ class LogCalculator(PolyCalculator):
 	#		Calculate polynomial function log(x)
 	#
 	def calculate(self,r):
+		if r < 0:
+			return None
 		exp = 0  																		# Force into range 1-2 , this can be done fairly easily by manipulating
 		while r >= 2:   																# exponents
 			r = r / 2
