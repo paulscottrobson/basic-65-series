@@ -11,7 +11,7 @@
 
 import math
 
-print(math.cos(1.5))
-print(math.cos(3.0))
-print(math.cos(4.5))
-print(math.cos(6.0))
+print(math.tan(1.5))
+print(math.tan(3.0))
+print(math.tan(4.5))
+print(math.tan(6.0))
